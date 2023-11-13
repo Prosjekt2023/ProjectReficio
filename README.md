@@ -1,17 +1,17 @@
-![Nøsted logo](https://raw.githubusercontent.com/Prosjekt2023/Reficio/main/bacit-dotnet.MVC/wwwroot/nlogo.png)
+![Nøsted logo](https://raw.githubusercontent.com/Prosjekt2023/ProjectReficio/main/ReficioSolutiom/wwwroot/nlogo.png)
 
 ## Før du kjører programmet:
 * Lag en database i MariaDB
-    * Du kan installere lokalt i Docker. Se veiledningen 'MariaDb database som Docker container'.
-  
+  * Du kan installere lokalt i Docker. Se veiledningen 'MariaDb database som Docker container'.
+
 
 * Sett inn en connection string i filen `appsettings.json`, der du ser `ConnectionString.DefaultConnection`
 
 
 * Denne skal følge dette formatet:
-    * server=localhost; user=root; database=ReficioDB; port=3306; password=Reficio`
-    * Dersom du kjører database og server på samme maskin, kan du bruke `localhost` eller `172.17.0.1` som IP-adresse
-    * Det er anbefalt å bruke port 3306, da dette er standard for MySQL og MariaDB
+  * server=localhost; user=root; database=ReficioDB; port=3306; password=Reficio`
+  * Dersom du kjører database og server på samme maskin, kan du bruke `localhost` eller `172.17.0.1` som IP-adresse
+  * Det er anbefalt å bruke port 3306, da dette er standard for MySQL og MariaDB
 
 
 ### MariaDb database som Docker container
@@ -40,7 +40,7 @@ docker ps
   ```
   Enter password: Reficio 
   ```
-5. Bruk SQL kommando 
+5. Bruk SQL kommando
 
 ```
   USE DATABASE ReficioDB;
