@@ -107,6 +107,27 @@ namespace ReficioSolution.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+            
+            // Seed roles
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
+                values: new object[] { "490dcd67-8acc-4b60-914a-a103b79b0321", "Admin", "ADMIN", "your-concurrency-stamp" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
+                values: new object[] { "50459076-8fc6-4ba7-836f-5338b726bc27", "Ansatt", "ANSATT", "your-concurrency-stamp" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
+                values: new object[] { "70ce6502-c8ea-4ce4-9e2f-40659fd32d9f", "Elektriker", "ELEKTRIKER", "your-concurrency-stamp" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "Name", "NormalizedName", "ConcurrencyStamp" },
+                values: new object[] { "f0fe3f4c-9545-4654-a6fc-57fde30fc7c8", "Mekaniker", "MEKANIKER", "your-concurrency-stamp" });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
