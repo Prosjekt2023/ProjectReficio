@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ReficioSolution.Controllers
 {
 
-    
+    [Authorize(Roles="Admin")]
     public class AccountController : Controller
     {
         private readonly UserManager<ReficioSolutionUser> _userManager;

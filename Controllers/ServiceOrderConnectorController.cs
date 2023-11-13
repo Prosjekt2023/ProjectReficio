@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReficioSolution.Repositories;
 
 namespace ReficioSolution.Controllers
 {
+    [Authorize]
     public class ServiceOrderConnectorController : Controller
     {
         private readonly ServiceFormRepository _repository;
