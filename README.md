@@ -332,4 +332,4 @@ CREATE TABLE IF NOT EXISTS CheckpointsEntry
 );
 ```
 Ferdig! Kjør programmet.
-Husk å legge til connectionstring og connect to database.
+Husk å legge til riktig connectionstring og koble til databasen din.
