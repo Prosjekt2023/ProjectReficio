@@ -30,7 +30,7 @@ namespace ReficioSolution.Repositories
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                var query = "SELECT * FROM CheckpointsEntry";
+                var query = "SELECT * FROM Checklist";
                 var results = dbConnection.Query<CheckListViewModel>(query);
 
                 return results;
@@ -62,37 +62,23 @@ namespace ReficioSolution.Repositories
             {
                 dbConnection.Open();
 
-                // Insert the checklist data into the Checklist table
-                var checklistId = dbConnection.ExecuteScalar<int>(
-                    "INSERT INTO Checklist (Sign, Freeform, CompletionDate) " +
-                    "VALUES (@Sign, @Freeform, @CompletionDate); SELECT LAST_INSERT_ID()",
-                    new
-                    {
-                        checkListViewModel.Sign,
-                        checkListViewModel.Freeform,
-                        checkListViewModel.CompletionDate
-                    }
-                );
+                var sql = "INSERT INTO Checklist (ClutchCheck, BrakeCheck, DrumBearingCheck, PTOCheck, " +
+                          "ChainTensionCheck, WireCheck, PinionBearingCheck, ChainWheelKeyCheck, " +
+                          "HydraulicCylinderCheck, HoseCheck, HydraulicBlockTest, TankOilChange, " +
+                          "GearboxOilChange, RingCylinderSealsCheck, BrakeCylinderSealsCheck, " +
+                          "WinchWiringCheck, RadioCheck, ButtonBoxCheck, PressureSettings, " +
+                          "FunctionTest, TractionForceKN, BrakeForceKN, Sign, Freeform, CompletionDate) " +
+                          "VALUES (@ClutchCheck, @BrakeCheck, @DrumBearingCheck, @PTOCheck, " +
+                          "@ChainTensionCheck, @WireCheck, @PinionBearingCheck, @ChainWheelKeyCheck, " +
+                          "@HydraulicCylinderCheck, @HoseCheck, @HydraulicBlockTest, @TankOilChange, " +
+                          "@GearboxOilChange, @RingCylinderSealsCheck, @BrakeCylinderSealsCheck, " +
+                          "@WinchWiringCheck, @RadioCheck, @ButtonBoxCheck, @PressureSettings, " +
+                          "@FunctionTest, @TractionForceKN, @BrakeForceKN, @Sign, @Freeform, @CompletionDate); " +
+                          "SELECT LAST_INSERT_ID()";
 
-                // Update the ChecklistId in the model with the newly created ChecklistId
+                var checklistId = dbConnection.ExecuteScalar<int>(sql, checkListViewModel);
+
                 checkListViewModel.ChecklistId = checklistId;
-
-                // Insert the associated checkpoints into the CheckpointsEntry table
-                dbConnection.Execute(
-                    "INSERT INTO CheckpointsEntry (ChecklistId, ClutchCheck, BrakeCheck, DrumBearingCheck, PTOCheck, " +
-                    "ChainTensionCheck, WireCheck, PinionBearingCheck, ChainWheelKeyCheck, " +
-                    "HydraulicCylinderCheck, HoseCheck, HydraulicBlockTest, TankOilChange, " +
-                    "GearboxOilChange, RingCylinderSealsCheck, BrakeCylinderSealsCheck, " +
-                    "WinchWiringCheck, RadioCheck, ButtonBoxCheck, PressureSettings, " +
-                    "FunctionTest, TractionForceKN, BrakeForceKN) " +
-                    "VALUES (@ChecklistId, @ClutchCheck, @BrakeCheck, @DrumBearingCheck, @PTOCheck, " +
-                    "@ChainTensionCheck, @WireCheck, @PinionBearingCheck, @ChainWheelKeyCheck, " +
-                    "@HydraulicCylinderCheck, @HoseCheck, @HydraulicBlockTest, @TankOilChange, " +
-                    "@GearboxOilChange, @RingCylinderSealsCheck, @BrakeCylinderSealsCheck, " +
-                    "@WinchWiringCheck, @RadioCheck, @ButtonBoxCheck, @PressureSettings, " +
-                    "@FunctionTest, @TractionForceKN, @BrakeForceKN)",
-                    checkListViewModel
-                );
             }
         }
     }
