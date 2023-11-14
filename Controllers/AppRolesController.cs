@@ -7,7 +7,7 @@ using ReficioSolution.Models;
 
 namespace ReficioSolution.Controllers
 {
-	[Authorize(Roles="Admin")]
+	
 	public class AppRolesController : Controller
 	{
 		private readonly RoleManager<IdentityRole> _roleManager;

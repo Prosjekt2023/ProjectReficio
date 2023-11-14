@@ -5,7 +5,7 @@ using ReficioSolution.Repositories;
 
 namespace ReficioSolution.Controllers
 {
-    [Authorize]
+    
     public class CheckListOrderController : Controller
     {
         private readonly CheckListRepository _repository;

@@ -5,7 +5,7 @@ using ReficioSolution.Repositories;
 
 namespace ReficioSolution.Controllers
 {
-    [Authorize]
+    
     public class ServiceOrderController : Controller
     {
         private readonly ServiceFormRepository _repository;
