@@ -456,8 +456,9 @@
     <input type="text" id="Sign" name="Sign">
     <br>
     <br>
-    <label for="CompletionDate">Date:</label>
-    <input type="date" id="CompletionDate" name="trip-CompletionDate" min="2000-01-01" max="2099-12-31" />
+   <label asp-for="CompletionDate" class="control-label">Ferdigstilt dato:</label>
+ <input asp-for="CompletionDate" class="form-control" type="date"/>
+ <span asp-validation-for="CompletionDate" class="text-danger"></span>
 
     <br><br/>
     <button type="submit" class="btn btn-primary">Send inn</button>
