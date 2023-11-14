@@ -243,9 +243,7 @@ create table if not EXISTS ServiceFormEntry
       RepairerSignature NVARCHAR(255)
 );
 
--- Create table for CheckpointEntry
-CREATE TABLE IF NOT EXISTS CheckpointsEntry
-(
+
     CheckpointId INT AUTO_INCREMENT PRIMARY KEY,
     ChecklistId INT UNIQUE,
     ClutchCheck VARCHAR(50),
@@ -270,8 +268,7 @@ CREATE TABLE IF NOT EXISTS CheckpointsEntry
     FunctionTest VARCHAR(50),
     TractionForceKN VARCHAR(50),
     BrakeForceKN VARCHAR(50),
-    FOREIGN KEY (ChecklistId) REFERENCES Checklist (ChecklistId)
-);
+
 
 -- Table for the Checklist
     CREATE TABLE IF NOT EXISTS Checklist
@@ -279,5 +276,27 @@ CREATE TABLE IF NOT EXISTS CheckpointsEntry
     ChecklistId INT AUTO_INCREMENT PRIMARY KEY,
     Sign VARCHAR(255), -- Signature
     Freeform TEXT, -- Any additional freeform text or comments
-    CompletionDate DATE NOT NULL -- The date the checklist was completed
+    CompletionDate DATE NOT NULL, -- The date the checklist was completed
+    ClutchCheck VARCHAR(50),
+    BrakeCheck VARCHAR(50),
+    DrumBearingCheck VARCHAR(50),
+    PTOCheck VARCHAR(50),
+    ChainTensionCheck VARCHAR(50),
+    WireCheck VARCHAR(50),
+    PinionBearingCheck VARCHAR(50),
+    ChainWheelKeyCheck VARCHAR(50),
+    HydraulicCylinderCheck VARCHAR(50),
+    HoseCheck VARCHAR(50),
+    HydraulicBlockTest VARCHAR(50),
+    TankOilChange VARCHAR(50),
+    GearboxOilChange VARCHAR(50),
+    RingCylinderSealsCheck VARCHAR(50),
+    BrakeCylinderSealsCheck VARCHAR(50),
+    WinchWiringCheck VARCHAR(50),
+    RadioCheck VARCHAR(50),
+    ButtonBoxCheck VARCHAR(50),
+    PressureSettings VARCHAR(50),
+    FunctionTest VARCHAR(50),
+    TractionForceKN VARCHAR(50),
+    BrakeForceKN VARCHAR(50)
 );
