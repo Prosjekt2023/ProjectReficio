@@ -21,6 +21,8 @@ namespace ReficioSolution.Controllers
             return View(serviceFormEntry);
         }
 
+
+//La til en ny kode del for ServiceorderStatus
         [HttpPost]
         public IActionResult UpdateStatus(int serviceFormId, string status)
         {
