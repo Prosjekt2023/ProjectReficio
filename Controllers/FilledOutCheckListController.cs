@@ -16,13 +16,13 @@ namespace ReficioSolution.Controllers
 
         public IActionResult Index(int id)
         {
-            var Checklist = _repository.GetOneRowById(id);
-            if (Checklist == null)
+            var checklist = _repository.GetOneRowById(id);
+            if (checklist == null)
             {
                 return NotFound();
             }
 
-            return View(Checklist);
+            return View(checklist);
         }
     }
 }

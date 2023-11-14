@@ -34,19 +34,20 @@
 <td rowspan="8">Mekanisk</td>
         <td>Sjekk Clutchcheck lameller for slitasje</td>
         <td>
-          <input type="radio" id="OK" name="ClutchCheck" value="OK" 
-                         @(Model.ClutchCheck == "OK" ? "checked" : "") disabled />
-                  <label for="OK"></label>
-              </td>
-              <td>
-                  <input type="radio" id="Bør_skiftes" name="ClutchCheck" value="Bør_skiftes" 
-                         @(Model.ClutchCheck == "Bør_skiftes" ? "checked" : "") disabled />
-                  <label for="Bør_skiftes"></label>
-              </td>
-              <td>
-                  <input type="radio" id="Defekt" name="ClutchCheck" value="Defekt" 
-                         @(Model.ClutchCheck == "Defekt" ? "checked" : "") disabled />
-                  <label for="Defekt"></label>
+           <input type="radio" id="ClutchCheck_OK" name="ClutchCheck" value="OK" 
+                     @(Model.ClutchCheck == "OK" ? "checked='checked'" : "") disabled />
+              <label for="ClutchCheck_OK"></label>
+          </td>
+          <td>
+              <input type="radio" id="ClutchCheck_Bør_skiftes" name="ClutchCheck" value="Bør_skiftes" 
+                     @(Model.ClutchCheck == "Bør_skiftes" ? "checked='checked'" : "") disabled />
+              <label for="ClutchCheck_Bør_skiftes"></label>
+          </td>
+          <td>
+              <input type="radio" id="ClutchCheck_Defekt" name="ClutchCheck" value="Defekt" 
+                     @(Model.ClutchCheck == "Defekt" ? "checked='checked'" : "") disabled />
+              <label for="ClutchCheck_Defekt"></label>
+              <input type="hidden" name="ClutchCheck" value="@Model.ClutchCheck" />
         </td>
     </tr>
     <tr>

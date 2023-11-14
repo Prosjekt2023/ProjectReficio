@@ -30,7 +30,7 @@ namespace ReficioSolution.Repositories
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                var query = "SELECT * FROM CheckpointsEntry";
+                var query = "SELECT * FROM Checklist";
                 var results = dbConnection.Query<CheckListViewModel>(query);
 
                 return results;
