@@ -22,9 +22,19 @@ namespace ReficioSolution.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubmitServiceOrderStatus([FromForm] ServiceOrderStatus serviceOrderStatus)
+        public IActionResult UpdateStatus(int serviceFormId, string status)
         {
-            // Logikk for å lagre til databasen med Dapper
+            try
+            {
+                _repository.InsertServiceOrderStatus(serviceFormId, status);
+                // Omdiriger til en passende side etter oppdatering
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Logg feilen og vis en feilmelding til brukeren
+                return View("Error");
+            }
         }
 
         
