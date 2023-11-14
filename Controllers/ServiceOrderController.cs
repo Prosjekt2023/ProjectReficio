@@ -20,5 +20,13 @@ namespace ReficioSolution.Controllers
             var serviceFormEntry = _repository.GetSomeOrderInfo();
             return View(serviceFormEntry);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SubmitServiceOrderStatus([FromForm] ServiceOrderStatus serviceOrderStatus)
+        {
+            // Logikk for å lagre til databasen med Dapper
+        }
+
+        
     }
 }

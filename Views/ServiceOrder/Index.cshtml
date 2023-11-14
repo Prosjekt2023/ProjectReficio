@@ -52,17 +52,19 @@
                         </a>
                     </td>
                     <td>
-                        <td>
-                            <select name="status" id="status">
-                                <option value="Ikke valgt">Velg Status</option>
+                    <td>
+                        <form method="post" action="@Url.Action("UpdateStatus", "ServiceOrder")">
+                            <input type="hidden" name="serviceFormId" value="@serviceFormEntry.ServiceFormId" />
+                            <select name="status" onchange="this.form.submit()">
+                                <option value="">Velg Status</option>
                                 <option value="OK">Ikke begynt</option>
                                 <option value="Under framgang">Framgang</option>
                                 <option value="Not ok">Ferdig</option>
                             </select>
-                        </td>
+                        </form>
+                    </td>
                 </tr>
             }
-            
             </tbody>
         </table>
     </form>

@@ -20,10 +20,7 @@ namespace ReficioSolution.Repositories
 
         public IDbConnection Connection
         {
-            get
-            {
-                return new MySqlConnection(_config.GetConnectionString("DefaultConnection"));
-            }
+            get { return new MySqlConnection(_config.GetConnectionString("DefaultConnection")); }
         }
 
         public IEnumerable<ServiceFormViewModel> GetAll()
@@ -45,22 +42,24 @@ namespace ReficioSolution.Repositories
             }
         }
 
-        
+
         public IEnumerable<ServiceFormViewModel> GetSomeOrderInfo()
         {
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                return dbConnection.Query<ServiceFormViewModel>("SELECT ServiceFormId, Customer, DateReceived, OrderNumber FROM ServiceFormEntry");
+                return dbConnection.Query<ServiceFormViewModel>(
+                    "SELECT ServiceFormId, Customer, DateReceived, OrderNumber FROM ServiceFormEntry");
             }
         }
-        
+
         public ServiceFormViewModel GetRelevantData(int id)
         {
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                var query = "SELECT ServiceFormId, OrderNumber, Customer, Email, Phone, Address, DateReceived FROM ServiceFormEntry WHERE ServiceFormId = @Id";
+                var query =
+                    "SELECT ServiceFormId, OrderNumber, Customer, Email, Phone, Address, DateReceived FROM ServiceFormEntry WHERE ServiceFormId = @Id";
                 return dbConnection.QuerySingleOrDefault<ServiceFormViewModel>(query, new { Id = id });
             }
         }
@@ -70,8 +69,22 @@ namespace ReficioSolution.Repositories
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                dbConnection.Execute("INSERT INTO ServiceFormEntry (ServiceFormId, Customer, DateReceived, Address, Email, OrderNumber, Phone, ProductType, Year, Service, Warranty, SerialNumber, Agreement, RepairDescription, UsedParts, WorkHours, CompletionDate,ReplacedPartsReturned, ShippingMethod, CustomerSignature, RepairerSignature) VALUES (@ServiceFormId, @Customer, @DateReceived, @Address, @Email, @OrderNumber, @Phone, @ProductType, @Year, @Service, @Warranty, @SerialNumber, @Agreement, @RepairDescription, @UsedParts, @WorkHours, @CompletionDate, @ReplacedPartsReturned, @ShippingMethod, @CustomerSignature, @RepairerSignature)", serviceFormViewModel);
+                dbConnection.Execute(
+                    "INSERT INTO ServiceFormEntry (ServiceFormId, Customer, DateReceived, Address, Email, OrderNumber, Phone, ProductType, Year, Service, Warranty, SerialNumber, Agreement, RepairDescription, UsedParts, WorkHours, CompletionDate,ReplacedPartsReturned, ShippingMethod, CustomerSignature, RepairerSignature) VALUES (@ServiceFormId, @Customer, @DateReceived, @Address, @Email, @OrderNumber, @Phone, @ProductType, @Year, @Service, @Warranty, @SerialNumber, @Agreement, @RepairDescription, @UsedParts, @WorkHours, @CompletionDate, @ReplacedPartsReturned, @ShippingMethod, @CustomerSignature, @RepairerSignature)",
+                    serviceFormViewModel);
             }
         }
+
+        public void InsertServiceOrderStatus(int serviceFormId, string status)
+        {
+            using (var dbConnection = Connection)
+            {
+                dbConnection.Open();
+                var sql = "INSERT INTO ServiceOrderStatus (Id, Status) VALUES (@Id, @Status)";
+                dbConnection.Execute(sql, new { Id = serviceFormId, Status = status });
+            }
+
+        }
     }
+
 }
