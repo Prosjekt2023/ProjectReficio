@@ -248,16 +248,6 @@ create table if not EXISTS ServiceFormEntry
 CREATE TABLE IF NOT EXISTS Checklist
 (
     ChecklistId INT AUTO_INCREMENT PRIMARY KEY,
-    Sign VARCHAR(255), -- Signature
-    Freeform TEXT, -- Any additional freeform text or comments
-    CompletionDate DATE NOT NULL -- The date the checklist was completed
-);
-
--- Create table for CheckpointEntry
-CREATE TABLE IF NOT EXISTS CheckpointsEntry
-(
-    CheckpointId INT AUTO_INCREMENT PRIMARY KEY,
-    ChecklistId INT UNIQUE,
     ClutchCheck VARCHAR(50),
     BrakeCheck VARCHAR(50),
     DrumBearingCheck VARCHAR(50),
@@ -280,6 +270,7 @@ CREATE TABLE IF NOT EXISTS CheckpointsEntry
     FunctionTest VARCHAR(50),
     TractionForceKN VARCHAR(50),
     BrakeForceKN VARCHAR(50),
-    FOREIGN KEY (ChecklistId) REFERENCES Checklist (ChecklistId)
+    Sign VARCHAR(255), -- Signature
+    Freeform TEXT, -- Any additional freeform text or comments
+    CompletionDate DATE NOT NULL -- The date the checklist was completed
 );
-
