@@ -13,19 +13,13 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model=>model.Id)</th>
-        
-            <th>@Html.DisplayNameFor(model=>model.Name)</th>
-        
-            <th></th>
+            <th>Tilgjenglige roller</th>
         </tr>
     </thead>
     <tbody>
         @foreach(var item in Model){
             <tr>
-                <td>@Html.DisplayFor(model=>item.Id)</td>
                 <td>@Html.DisplayFor(model=>item.Name)</td>
-
             </tr>
         }
     </tbody>
