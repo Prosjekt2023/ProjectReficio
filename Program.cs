@@ -1,9 +1,11 @@
 using System.Data;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.Extensions.Configuration;
 using MySqlConnector;
+using ReficioSolution;
 using ReficioSolution.Areas.Identity.Data;
 using ReficioSolution.Data;
 using ReficioSolution.Repositories;
@@ -39,6 +41,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -60,3 +63,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+builder.Services.AddAntiforgery(options => { options.HeaderName = "X-CSRF-TOKEN"; });
+
+            WebHost.CreateDefaultBuilder(args)
+                .ConfigureKestrel(c => c.AddServerHeader = false)
+                .UseStartup<Startup>()
+                .Build();
+
