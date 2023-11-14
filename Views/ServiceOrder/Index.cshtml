@@ -23,7 +23,7 @@
                 <th>Kunde:</th>
                 <th>Mottatt dato:</th>
                 <th>Ordrenummer:</th>
-                
+                <th>Status:</th>
             </tr>
             </thead>
             <tbody>
@@ -51,6 +51,15 @@
                             @serviceFormEntry.OrderNumber
                         </a>
                     </td>
+                    <td>
+                        <td>
+                            <select name="status" id="status">
+                                <option value="Ikke valgt">Ikke valgt</option>
+                                <option value="OK">Ok</option>
+                                <option value="Under framgang">Under framgang</option>
+                                <option value="Not ok">Not ok</option>
+                            </select>
+                        </td>
                 </tr>
             }
             
