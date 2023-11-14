@@ -243,6 +243,15 @@ create table if not EXISTS ServiceFormEntry
       RepairerSignature NVARCHAR(255)
 );
 
+-- Table for the Checklist
+CREATE TABLE IF NOT EXISTS Checklist
+(
+    ChecklistId INT AUTO_INCREMENT PRIMARY KEY,
+    Sign VARCHAR(255), -- Signature
+    Freeform TEXT, -- Any additional freeform text or comments
+    CompletionDate DATE NOT NULL -- The date the checklist was completed
+);
+
 -- Create table for CheckpointEntry
 CREATE TABLE IF NOT EXISTS CheckpointsEntry
 (
@@ -273,11 +282,3 @@ CREATE TABLE IF NOT EXISTS CheckpointsEntry
     FOREIGN KEY (ChecklistId) REFERENCES Checklist (ChecklistId)
 );
 
--- Table for the Checklist
-    CREATE TABLE IF NOT EXISTS Checklist
-    (
-    ChecklistId INT AUTO_INCREMENT PRIMARY KEY,
-    Sign VARCHAR(255), -- Signature
-    Freeform TEXT, -- Any additional freeform text or comments
-    CompletionDate DATE NOT NULL -- The date the checklist was completed
-);
