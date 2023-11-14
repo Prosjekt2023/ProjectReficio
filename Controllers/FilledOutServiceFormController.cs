@@ -1,24 +1,29 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReficioSolution.Repositories;
 
-namespace ReficioSolution.Controllers;
-
-public class FilledOutServiceFormController : Controller
+namespace ReficioSolution.Controllers
 {
-    private readonly ServiceFormRepository _repository;
 
-    public FilledOutServiceFormController(ServiceFormRepository repository)
+    [Authorize]
+    public class FilledOutServiceFormController : Controller
     {
-        _repository = repository;
-    }
-    
-    public IActionResult Index(int id)
-    {
-        var serviceFormEntry = _repository.GetOneRowById(id);
-        if (serviceFormEntry == null)
+        private readonly ServiceFormRepository _repository;
+
+        public FilledOutServiceFormController(ServiceFormRepository repository)
         {
-            return NotFound();
+            _repository = repository;
         }
-        return View(serviceFormEntry);
+
+        public IActionResult Index(int id)
+        {
+            var serviceFormEntry = _repository.GetOneRowById(id);
+            if (serviceFormEntry == null)
+            {
+                return NotFound();
+            }
+
+            return View(serviceFormEntry);
+        }
     }
 }
