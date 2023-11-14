@@ -240,7 +240,8 @@ create table if not EXISTS ServiceFormEntry
       ReplacedPartsReturned NVARCHAR(255),
       ShippingMethod NVARCHAR(255),
       CustomerSignature NVARCHAR(255),
-      RepairerSignature NVARCHAR(255)
+      RepairerSignature NVARCHAR(255),
+      ServiceOrderStatus NVARCHAR(255)   
 );
 
 -- Table for the Checklist
