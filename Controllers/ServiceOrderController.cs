@@ -20,5 +20,7 @@ namespace ReficioSolution.Controllers
             var serviceFormEntry = _repository.GetSomeOrderInfo();
             return View(serviceFormEntry);
         }
+
+        
     }
 }

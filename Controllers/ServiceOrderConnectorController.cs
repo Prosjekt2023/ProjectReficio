@@ -17,7 +17,7 @@ namespace ReficioSolution.Controllers
             _checkListRepository = checkListRepository;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(int id, string status) // Added 'status' parameter
         {
             var serviceFormEntry = _serviceFormRepository.GetRelevantData(id);
             var checkListEntry = _checkListRepository.GetRelevantData(id); // Assuming you have a method to get CheckList data
@@ -30,7 +30,8 @@ namespace ReficioSolution.Controllers
             var compositeViewModel = new CompositeViewModel
             {
                 ServiceForm = serviceFormEntry,
-                CheckList = checkListEntry
+                CheckList = checkListEntry,
+                Status = status // Add a Status property in your CompositeViewModel if it doesn't already exist
             };
 
             return View(compositeViewModel);

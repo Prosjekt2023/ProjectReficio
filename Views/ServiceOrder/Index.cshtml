@@ -52,17 +52,14 @@
                         </a>
                     </td>
                     <td>
-                        <td>
-                            <select name="status" id="status">
-                                <option value="Ikke valgt">Ikke valgt</option>
-                                <option value="OK">Ok</option>
-                                <option value="Under framgang">Under framgang</option>
-                                <option value="Not ok">Not ok</option>
-                            </select>
-                        </td>
+                    <form asp-controller="ServiceOrderConnector" asp-action="Index" method="get">
+                                   <input type="hidden" name="id" value="@serviceFormEntry.ServiceFormId" />
+                                   <input type="text" name="status" placeholder="Enter Status" />
+                                   <button type="submit">Send Status</button>
+                               </form>
+                    </td>
                 </tr>
             }
-            
             </tbody>
         </table>
     </form>

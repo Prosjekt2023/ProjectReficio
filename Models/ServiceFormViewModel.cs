@@ -36,5 +36,7 @@ namespace ReficioSolution.Models
         public string ShippingMethod { get; set; }
         public string CustomerSignature { get; set; }
         public string RepairerSignature { get; set; }
+        
+        
     }
 }

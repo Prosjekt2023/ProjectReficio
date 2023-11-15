@@ -4,5 +4,7 @@
     {
         public CheckListViewModel CheckList { get; set; }
         public ServiceFormViewModel ServiceForm { get; set; }
+        
+        public string Status { get; set; }
     }
 }
