@@ -240,14 +240,14 @@ create table if not EXISTS ServiceFormEntry
       ReplacedPartsReturned NVARCHAR(255),
       ShippingMethod NVARCHAR(255),
       CustomerSignature NVARCHAR(255),
-      RepairerSignature NVARCHAR(255)
+      RepairerSignature NVARCHAR(255),
+      ServiceOrderStatus NVARCHAR(255)   
 );
 
--- Create table for CheckpointEntry
-CREATE TABLE IF NOT EXISTS CheckpointsEntry
+-- Table for the Checklist
+CREATE TABLE IF NOT EXISTS Checklist
 (
-    CheckpointId INT AUTO_INCREMENT PRIMARY KEY,
-    ChecklistId INT UNIQUE,
+    ChecklistId INT AUTO_INCREMENT PRIMARY KEY,
     ClutchCheck VARCHAR(50),
     BrakeCheck VARCHAR(50),
     DrumBearingCheck VARCHAR(50),
@@ -270,13 +270,6 @@ CREATE TABLE IF NOT EXISTS CheckpointsEntry
     FunctionTest VARCHAR(50),
     TractionForceKN VARCHAR(50),
     BrakeForceKN VARCHAR(50),
-    FOREIGN KEY (ChecklistId) REFERENCES Checklist (ChecklistId)
-);
-
--- Table for the Checklist
-    CREATE TABLE IF NOT EXISTS Checklist
-    (
-    ChecklistId INT AUTO_INCREMENT PRIMARY KEY,
     Sign VARCHAR(255), -- Signature
     Freeform TEXT, -- Any additional freeform text or comments
     CompletionDate DATE NOT NULL -- The date the checklist was completed

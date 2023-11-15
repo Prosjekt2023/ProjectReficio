@@ -27,6 +27,7 @@
         <!-- Tabell med overskriftsrader -->
         <table class="table table-hover">
             <thead class="thead-light">
+
                 <!-- Overskriftsrader for tabellen -->
                 <tr>
                     <th>Serviceskjema Id</th>
@@ -50,6 +51,50 @@
                         <!-- ... (tilsvarende struktur for andre kolonner) ... -->
                     </tr>
                 }
+            <tr>
+                <th>Serviceskjema ID</th>
+                <th>Kunde:</th>
+                <th>Mottatt dato:</th>  
+                <th>Ordrenummer:</th>
+                <th>Status:</th>
+            </tr>
+            <tbody>
+            
+            @foreach (var serviceFormEntry in Model)
+            {
+                <tr>
+                    <td>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="ServiceOrderConnector" asp-action="Index" asp-route-id="@serviceFormEntry.ServiceFormId">
+                            @serviceFormEntry.ServiceFormId
+                        </a>
+                    </td>
+                    <td>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="ServiceOrderConnector" asp-action="Index" asp-route-id="@serviceFormEntry.ServiceFormId">
+                            @serviceFormEntry.Customer
+                        </a>
+                    </td>
+                    <td>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="ServiceOrderConnector" asp-action="Index" asp-route-id="@serviceFormEntry.ServiceFormId">
+                            @Html.DisplayFor(model => serviceFormEntry.DateReceived)
+                        </a>
+                    </td>
+                    <td>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="ServiceOrderConnector" asp-action="Index" asp-route-id="@serviceFormEntry.ServiceFormId">
+                            @serviceFormEntry.OrderNumber
+                        </a>
+                    </td>
+                    <td>
+                        <td>
+                            <select name="status" id="status">
+                                <option value="Ikke valgt">Ikke valgt</option>
+                                <option value="OK">Ok</option>
+                                <option value="Under framgang">Under framgang</option>
+                                <option value="Not ok">Not ok</option>
+                            </select>
+                        </td>
+                </tr>
+            }
+            
             </tbody>
         </table>
     </form>
