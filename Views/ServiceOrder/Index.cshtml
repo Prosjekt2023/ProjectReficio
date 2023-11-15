@@ -52,16 +52,11 @@
                         </a>
                     </td>
                     <td>
-                    <td>
-                        <form method="post" action="@Url.Action("UpdateStatus", "ServiceOrder")">
-                            <input type="hidden" name="serviceFormId" value="@serviceFormEntry.ServiceFormId" />
-                            <select name="status" onchange="this.form.submit()">
-                                <option value="">Velg Status</option>
-                                <option value="OK">Ikke begynt</option>
-                                <option value="Under framgang">Framgang</option>
-                                <option value="Not ok">Ferdig</option>
-                            </select>
-                        </form>
+                    <form asp-controller="ServiceOrderConnector" asp-action="Index" method="get">
+                                   <input type="hidden" name="id" value="@serviceFormEntry.ServiceFormId" />
+                                   <input type="text" name="status" placeholder="Enter Status" />
+                                   <button type="submit">Send Status</button>
+                               </form>
                     </td>
                 </tr>
             }

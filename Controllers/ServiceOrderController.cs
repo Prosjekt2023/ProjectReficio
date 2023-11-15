@@ -21,24 +21,6 @@ namespace ReficioSolution.Controllers
             return View(serviceFormEntry);
         }
 
-
-//La til en ny kode del for ServiceorderStatus
-        [HttpPost]
-        public IActionResult UpdateStatus(int serviceFormId, string status)
-        {
-            try
-            {
-                _repository.InsertServiceOrderStatus(serviceFormId, status);
-                // Omdiriger til en passende side etter oppdatering
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                // Logg feilen og vis en feilmelding til brukeren
-                return View("Error");
-            }
-        }
-
         
     }
 }

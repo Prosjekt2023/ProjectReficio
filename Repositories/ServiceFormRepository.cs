@@ -73,17 +73,8 @@ namespace ReficioSolution.Repositories
             }
         }
 
-// Ny linje for ServiceOrderStatus
-        public void InsertServiceOrderStatus(int serviceFormId, string status)
-        {
-            using (var dbConnection = Connection)
-            {
-                dbConnection.Open();
-                var sql = "INSERT INTO ServiceOrderStatus (Id, Status) VALUES (@Id, @Status)";
-                dbConnection.Execute(sql, new { Id = serviceFormId, Status = status });
-            }
 
         }
     }
 
-}
+
