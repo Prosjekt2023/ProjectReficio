@@ -55,6 +55,16 @@ namespace ReficioSolution.Repositories
                 return dbConnection.Query<CheckListViewModel>("SELECT ChecklistId, Sign, Freeform, CompletionDate FROM Checklist");
             }
         }
+        
+        public CheckListViewModel GetRelevantData(int id)
+        {
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+                var query = "SELECT ChecklistId FROM Checklist WHERE ChecklistId = @Id";
+                return dbConnection.QuerySingleOrDefault<CheckListViewModel>(query, new { Id = id });
+            }
+        }
 
         public void Insert(CheckListViewModel checkListViewModel)
         {
