@@ -4,28 +4,25 @@ using ReficioSolution.Repositories;
 
 namespace ReficioSolution.Controllers
 {
-    // Kontrollerklasse for håndtering av utfylte sjekklister
-    [Authorize] // Krever at brukeren er autentisert for å få tilgang til denne kontrolleren
+    [Authorize]
     public class FilledOutCheckListController : Controller
     {
-        private readonly CheckListRepository _repository; // Repository for håndtering av sjekklister
+        private readonly CheckListRepository _repository;
 
-        // Konstruktør som injiserer sjekklisterepository
         public FilledOutCheckListController(CheckListRepository repository)
         {
             _repository = repository;
         }
 
-        // Handling for visning av indekssiden for utfylte sjekklister
         public IActionResult Index(int id)
         {
-            var Checklist = _repository.GetOneRowById(id); // Hent informasjon om en utfylt sjekkliste basert på ID
-            if (Checklist == null)
+            var checklist = _repository.GetOneRowById(id);
+            if (checklist == null)
             {
-                return NotFound(); // Hvis sjekklisten ikke finnes, returner NotFound-resultat
+                return NotFound();
             }
 
-            return View(Checklist); // Send informasjonen til visningen
+            return View(checklist);
         }
     }
 }

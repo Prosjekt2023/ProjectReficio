@@ -1,11 +1,7 @@
 ﻿@inject SignInManager<ReficioSolutionUser> SignInManager
-
 @{
-    // Sjekker om det er eksterne innloggingsalternativer tilgjengelige for brukeren.
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
-
-<!-- Navigasjonsmeny for administrasjon av brukerkonto -->
 <ul class="nav nav-pills flex-column">
     <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profil</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">E-post</a></li>

@@ -1,24 +1,21 @@
 ﻿@page
 @model LogoutModel
 @{
-    ViewData["Title"] = "Logg ut";
+    ViewData["Title"] = "Log out";
 }
 
 <header>
     <h1>@ViewData["Title"]</h1>
     @{
-        // Sjekk om brukeren er autentisert før du viser påloggingsskjemaet
         if (User.Identity?.IsAuthenticated ?? false)
         {
-            // Skjema for utlogging
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Klikk her for å logge ut</button>
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
             </form>
         }
         else
         {
-            // Melding om vellykket utlogging hvis ikke autentisert
-            <p>Du har logget ut av applikasjonen.</p>
+            <p>You have successfully logged out of the application.</p>
         }
     }
 </header>

@@ -1,6 +1,4 @@
 ﻿@{
-    // Sjekker om det finnes en "ParentLayout"-verdi i ViewData, og bruker den som layout hvis den er tilgjengelig.
-    // Hvis ikke, bruker den standardlayouten "_Layout".
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
     {
         Layout = parentLayout.ToString();
@@ -9,7 +7,7 @@
     {
         Layout = "_Layout";
     }
-
+}
 
 <h1>Administrer kontoen din</h1>
 
@@ -18,32 +16,14 @@
     <hr />
     <div class="row">
         <div class="col-md-3">
-            @{
-                /*
-                 *  Inkluderer delvis visning for navigasjon av kontoinnstillinger.
-                 */
-            }
-            
             <partial name="_ManageNav" />
         </div>
         <div class="col-md-9">
-            @{
-                /*
-                 * Rendrer hovedinnholdet for administrering av konto.
-                 */
-            }
             @RenderBody()
         </div>
     </div>
 </div>
 
 @section Scripts {
-    @{
-        /*
-         * Rendrer eventuelle seksjoner for skripter som er definert i visningen.
-         */
-    }
-   
     @RenderSection("Scripts", required: false)
-    }
 }

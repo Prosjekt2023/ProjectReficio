@@ -4,28 +4,26 @@ using ReficioSolution.Repositories;
 
 namespace ReficioSolution.Controllers
 {
-    // Kontrollerklasse for håndtering av utfylte tjenesteskjemaer
-    [Authorize] // Krever at brukeren er autentisert for å få tilgang til denne kontrolleren
+
+    [Authorize]
     public class FilledOutServiceFormController : Controller
     {
-        private readonly ServiceFormRepository _repository; // Repository for håndtering av tjenesteskjemaer
+        private readonly ServiceFormRepository _repository;
 
-        // Konstruktør som injiserer tjenesteskjemarepository
         public FilledOutServiceFormController(ServiceFormRepository repository)
         {
             _repository = repository;
         }
 
-        // Handling for visning av indekssiden for utfylte tjenesteskjemaer
         public IActionResult Index(int id)
         {
-            var serviceFormEntry = _repository.GetOneRowById(id); // Hent informasjon om en utfylt tjenesteskjemaoppføring basert på ID
+            var serviceFormEntry = _repository.GetOneRowById(id);
             if (serviceFormEntry == null)
             {
-                return NotFound(); // Hvis tjenesteskjemaoppføringen ikke finnes, returner NotFound-resultat
+                return NotFound();
             }
 
-            return View(serviceFormEntry); // Send informasjonen til visningen
+            return View(serviceFormEntry);
         }
     }
 }

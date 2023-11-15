@@ -1,5 +1,5 @@
-﻿// Lisensiert til .NET Foundation under ett eller flere avtaler.
-// .NET Foundation lisenserer denne filen til deg under MIT-lisensen.
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
 using System;
@@ -24,26 +24,18 @@ namespace ReficioSolution.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        /// <summary>
-        /// Logg ut brukeren og returner til den opprinnelige siden eller oppdater gjeldende side.
-        /// </summary>
-        /// <param name="returnUrl">Den opprinnelige siden brukeren ønsket å gå til.</param>
-        /// <returns>ActionResult basert på brukerens utlogging.</returns>
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
-            // Logg brukeren ut
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("Bruker logget ut.");
-
-            // Returner til den opprinnelige siden hvis angitt, ellers oppdater gjeldende side
+            _logger.LogInformation("User logged out.");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);
             }
             else
             {
-                // Dette må være en redirect for at nettleseren skal utføre en ny
-                // forespørsel, og identiteten til brukeren blir oppdatert.
+                // This needs to be a redirect so that the browser performs a new
+                // request and the identity for the user gets updated.
                 return RedirectToPage();
             }
         }
