@@ -1,44 +1,59 @@
 ﻿@page
 @model EmailModel
 @{
+    // Angi tittel for visningen
     ViewData["Title"] = "Håndter e-post";
+    // Angi aktiv side for navigasjon (for eksempel høylysing i en meny)
     ViewData["ActivePage"] = ManageNavPages.Email;
 }
 
+<!-- Overskrift for visningen -->
 <h3>@ViewData["Title"]</h3>
 
+<!-- Skjema for e-postbehandling -->
 <div class="row">
     <div class="col-md-6">
         <form id="email-form" method="post">
+            <!-- Vis valideringsfeil samlet -->
             <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+
+            <!-- Sjekk om e-postadressen er bekreftet -->
             @if (Model.IsEmailConfirmed)
             {
+                <!-- Vis bekreftet e-postadresse med grønn merking hvis bekreftet -->
                 <div class="form-floating mb-3 input-group">
                     <input asp-for="Email" class="form-control" placeholder="Vennligst skriv inn e-postadressen din." disabled />
-                        <div class="input-group-append">
-                            <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
-                        </div>
+                    <div class="input-group-append">
+                        <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
+                    </div>
                     <label asp-for="Email" class="form-label"></label>
                 </div>
             }
             else
             {
+                <!-- Vis skjema for å sende verifiseringse-post hvis ikke bekreftet -->
                 <div class="form-floating mb-3">
                     <input asp-for="Email" class="form-control" placeholder="Vennligst skriv inn e-postadressen din.." disabled />
                     <label asp-for="Email" class="form-label">E-post</label>
                     <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verifiserings-e-post</button>
                 </div>
             }
+
+            <!-- Skjema for innsending av ny e-postadresse -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Vennligst skriv inn ny e-postadresse." />
                 <label asp-for="Input.NewEmail" class="form-label">Ny e-post</label>
                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
             </div>
+
+            <!-- Knapp for å endre e-postadresse -->
             <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Endre e-post</button>
         </form>
     </div>
 </div>
 
+<!-- Seksjon for skripter -->
 @section Scripts {
+    <!-- Inkluderer delvis visning for valideringsskripter -->
     <partial name="_ValidationScriptsPartial" />
 }

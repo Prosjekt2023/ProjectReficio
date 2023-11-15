@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ReficioSolution.Areas.Identity.Data;
 
-// Add profile data for application users by adding properties to the ReficioSolutionUser class
+// Legg til profildata for applikasjonsbrukere ved å legge til egenskaper i ReficioSolutionUser-klassen
 public class ReficioSolutionUser : IdentityUser
 {
     public string Firstname { get; set; }

@@ -4,19 +4,24 @@
     ViewData["Title"] = "Registrer deg";
 }
 
+<!-- Page Title -->
 <h1 class="text-center">@ViewData["Title"]</h1>
 <link rel="stylesheet" type="text/css" href="~/css/Register.css">
 
 <div class="row">
     <div class="col-md-4 mx-auto mt-5">
+        <!-- Registreringsskjema -->
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Opprett en ny konto.</h2>
             <hr />
+
+            <!-- Feilmeldinger vises her -->
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
+            <!-- Fornavn og etternavn i en ny rad -->
             <div class="row">
-                <!-- New row for First Name and Last Name -->
                 <div class="col-md-6">
+                    <!-- Fornavn-inndatafelt -->
                     <div class="form-floating mb-3">
                         <input asp-for="Input.Firstname" class="form-control" autocomplete="Firstname" aria-required="true" placeholder="First Name" />
                         <label asp-for="Input.Firstname">Fornavn</label>
@@ -25,6 +30,7 @@
                 </div>
 
                 <div class="col-md-6">
+                    <!-- Etternavn-inndatafelt -->
                     <div class="form-floating mb-3">
                         <input asp-for="Input.Lastname" class="form-control" autocomplete="Lastname" aria-required="true" placeholder="Last Name" />
                         <label asp-for="Input.Lastname">Etternavn</label>
@@ -33,6 +39,7 @@
                 </div>
             </div>
 
+            <!-- E-post, passord og bekreft passord -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">E-post</label>
@@ -49,49 +56,21 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
 
+            <!-- Rullegardinliste for å velge rolle -->
             <div class="form-floating mb-3">
                 <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select"  aria-required="true">
                     <option disabled-selected>Velg rolle </option>
                 </select>                
                 <span asp-validation-for="Input.Role" class="text-danger"></span>
             </div>
-            
 
+            <!-- Registreringsknapp -->
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Fullfør Registrering</button>
         </form>
     </div>
-    @* <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div> *@
 </div>
 
+<!-- Scripts for validering -->
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
