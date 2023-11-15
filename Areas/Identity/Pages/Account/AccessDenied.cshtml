@@ -1,15 +1,10 @@
 ﻿@page
 @model AccessDeniedModel
 @{
-    // Setter tittelen for siden
     ViewData["Title"] = "Tilgang nektet";
 }
 
-<!-- Seksjon for sidetopp -->
 <header>
-    <!-- Vis tittelen med rød farge som indikerer en feil -->
     <h1 class="text-danger">@ViewData["Title"]</h1>
-    
-    <!-- Gi en melding til brukeren som forklarer tilgangsnekt -->
     <p class="text-danger">Du har ikke tilgang til denne ressursen. Ta kontakt med en administrator.</p>
 </header>

@@ -3,11 +3,9 @@
     ViewData["Title"] = "Error";
 }
 
-<!-- Overskrift som indikerer feil -->
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
-<!-- Viser Request ID hvis tilgjengelig -->
 @if (Model.ShowRequestId)
 {
     <p>
@@ -15,7 +13,6 @@
     </p>
 }
 
-<!-- Informasjon om utviklingsmodus -->
 <h3>Development Mode</h3>
 <p>
     Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.

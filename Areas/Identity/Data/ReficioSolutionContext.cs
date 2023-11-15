@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration; // Legg til dette navnerommet.
+using Microsoft.Extensions.Configuration; // Add this namespace
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using ReficioSolution.Areas.Identity.Data;
 using ReficioSolution.Models;
@@ -10,12 +10,12 @@ namespace ReficioSolution.Data
 {
     public class ReficioSolutionContext : IdentityDbContext<ReficioSolutionUser>
     {
-        private readonly IConfiguration _configuration; //Legg til et felt for å lagre konfigurasjonen
+        private readonly IConfiguration _configuration; // Add a field to store the configuration
 
         public ReficioSolutionContext(DbContextOptions<ReficioSolutionContext> options, IConfiguration configuration)
             : base(options)
         {
-            _configuration = configuration; // Initialiser konfigurasjonen
+            _configuration = configuration; // Initialize the configuration
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
@@ -32,10 +32,10 @@ namespace ReficioSolution.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Hent tilkoblingsstrengen fra appsettings.json ved å bruke IConfiguration
+                // Get the connection string from appsettings.json using the IConfiguration
                 var connectionString = _configuration.GetConnectionString("ReficioSolutionContextConnection");
 
-                // Konfigurer database-tilkoblingen
+                // Configure the database connection
                 optionsBuilder.UseMySql(connectionString, new MariaDbServerVersion(new Version(10, 5, 12)));
             }
         }

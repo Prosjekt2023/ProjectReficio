@@ -5,23 +5,20 @@ using ReficioSolution.Repositories;
 
 namespace ReficioSolution.Controllers
 {
-    // Kontrollerklasse for håndtering av sjekklister
-    [Authorize] // Krever at brukeren er autentisert for å få tilgang til denne kontrolleren
+    [Authorize]
     public class CheckListOrderController : Controller
     {
-        private readonly CheckListRepository _repository; // Repository for håndtering av sjekklister
+        private readonly CheckListRepository _repository;
 
-        // Konstruktør som injiserer sjekklisterepository
         public CheckListOrderController(CheckListRepository repository)
         {
             _repository = repository;
         }
 
-        // Handling for visning av indekssiden for sjekklister
         public IActionResult Index()
         {
-            var Checklist = _repository.GetSomeOrderInfo(); // Hent informasjon om noen ordrer fra sjekklisterepository
-            return View(Checklist); // Send informasjonen til visningen
+            var Checklist = _repository.GetSomeOrderInfo();
+            return View(Checklist);
         }
     }
 }

@@ -9,55 +9,60 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ReficioSolution.Controllers
 {
-    // Kontrollerklasse for administrasjon av brukerkontoer
-    [Authorize(Roles="Admin")] // Krever at brukeren har rollen "Admin" for å få tilgang til denne kontrolleren
+
+    [Authorize(Roles="Admin")]
     public class AccountController : Controller
     {
-        private readonly UserManager<ReficioSolutionUser> _userManager; // UserManager for håndtering av brukeroperasjoner
-        private readonly RoleManager<IdentityRole> _roleManager; // RoleManager for håndtering av roller
+        private readonly UserManager<ReficioSolutionUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        // Konstruktør som injiserer UserManager og RoleManager
         public AccountController(UserManager<ReficioSolutionUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
-        // HTTP POST-metode for sletting av brukerkonto basert på brukerens ID
+
+
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return NotFound(); // Bruker ikke funnet
+                return NotFound(); // User not found
             }
 
             var result = await _userManager.DeleteAsync(user);
             if (result.Succeeded)
             {
-                // Valgfritt: Utfør ytterligere handlinger etter vellykket sletting
-                // For eksempel, oppdater brukerlisten eller vis en suksessmelding.
-                TempData["SuccessMessage"] = "Bruker slettet vellykket.";
+                // Optionally, you can perform additional actions after a successful delete
+                // For example, refreshing the user list or displaying a success message.
+                TempData["SuccessMessage"] = "User deleted successfully.";
             }
             else
             {
-                // Håndter feil, for eksempel visning av en feilmelding
-                TempData["ErrorMessage"] = "Feil ved sletting av bruker.";
+                // Handle errors, such as displaying an error message
+                TempData["ErrorMessage"] = "Error deleting user.";
             }
 
             return RedirectToAction("Index");
         }
 
-        // HTTP GET-metode for visning av brukerindeksen
+
         public async Task<IActionResult> Index()
         {
-            // Hent en liste over brukere
-            var users = await _userManager.Users.ToListAsync();
+            // Get a list of users  
+            var users = await _userManager.Users.ToListAsync();           
 
-            // Send brukerne til visningen
+            // Pass the users to the view
             var viewModel = new AccountViewModel { Users = users, };
             return View(viewModel);
         }
+
+        
     }
+
+
+
 }
