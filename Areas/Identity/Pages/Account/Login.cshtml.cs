@@ -1,5 +1,5 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Lisensiert til .NET-stiftelsen under ett eller flere avtaler.
+// .NET-stiftelsen lisenserer denne filen til deg under MIT-lisensen.
 #nullable disable
 
 using System;
@@ -29,93 +29,74 @@ namespace ReficioSolution.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
+        // Egenskap for å binde input fra skjemaet
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
+        // Liste over eksterne påloggingsalternativer
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
+        // Returnerings-URL etter pålogging
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
+        // Melding for feil ved pålogging (midlertidig data)
         [TempData]
         public string ErrorMessage { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
+        // Modell for inputdata
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [EmailAddress]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Husk meg?")]
             public bool RememberMe { get; set; }
         }
 
+        // Utføres når GET-forespørsel mottas
         public async Task OnGetAsync(string returnUrl = null)
         {
+            // Legg til feilmelding hvis det er en
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
+            // Sett standard-URL hvis ingen er angitt
             returnUrl ??= Url.Content("~/");
 
-            // Clear the existing external cookie to ensure a clean login process
+            // Logg ut eksisterende ekstern informasjonskapsel for å sikre en ren påloggingsprosess
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
+            // Hent og sett opp eksterne påloggingsalternativer
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
         }
 
+        // Utføres når POST-forespørsel mottas
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            // Sett standard-URL hvis ingen er angitt
             returnUrl ??= Url.Content("~/");
 
+            // Hent og sett opp eksterne påloggingsalternativer
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
+            // Hvis modellen er gyldig, prøv pålogging
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                // Dette teller ikke påloggingsfeil mot kontolås
+                // For å aktivere kontolås ved påloggingsfeil, sett lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("Bruker pålogget.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -124,17 +105,17 @@ namespace ReficioSolution.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Brukerkonto låst.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Ugyldig påloggingsforsøk.");
                     return Page();
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            // Hvis vi kommer hit, har noe feilet, vis skjemaet på nytt
             return Page();
         }
     }

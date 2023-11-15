@@ -1,71 +1,90 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ReficioSolution</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ReficioSolution</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Hjem</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Brukere</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="AppRoles" asp-action="Index">Roller</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceForm" asp-action="Index">Serviceskjema</a> <!-- Add this line -->
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ServiceOrder" asp-action="Index">Serviceordre</a> <!-- Add this line -->
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CheckList" asp-action="Index">Sjekkliste</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CheckListOrder" asp-action="Index">Sjekkliste oversikt</a>
-                        </li>
-                        
-                    </ul>                
+﻿    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <!-- Charset og viewport for riktig visning på enheter -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Dynamisk tittel som inkluderer ViewData["Title"] -->
+        <title>@ViewData["Title"] - ReficioSolution</title>
+        <!-- Lenker til stilark, inkludert Bootstrap og egendefinert stil -->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </head>
+    
+    <body>
+        <!-- Navigasjonsmeny og header -->
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <!-- Lenke til hjemmesiden -->
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ReficioSolution</a>
+                    <!-- Toggler-knapp for å vise/skjule meny på små skjermer -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- Navigasjonsmeny som kollapser på små skjermer -->
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <!-- Lenke til hjemmesiden -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Hjem</a>
+                            </li>
+                            <!-- Lenke til brukeradministrasjon -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Brukere</a>
+                            </li>
+                            <!-- Lenke til roller -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AppRoles" asp-action="Index">Roller</a>
+                            </li>
+                            <!-- Lenke til serviceskjema -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ServiceForm" asp-action="Index">Serviceskjema</a>
+                            </li>
+                            <!-- Lenke til serviceordre -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ServiceOrder" asp-action="Index">Serviceordre</a>
+                            </li>
+                            <!-- Lenke til sjekkliste -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CheckList" asp-action="Index">Sjekkliste</a>
+                            </li>
+                            <!-- Lenke til sjekklisteoversikt -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CheckListOrder" asp-action="Index">Sjekkliste oversikt</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <partial name="_LoginPartial" />
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+                <!-- Delvis visning for pålogging og brukerinformasjon -->
+                <partial name="_LoginPartial" />
+            </nav>
+        </header>
+    
+        <!-- Hovedinnholdet i en container -->
         <div class="container">
-            &copy; 2023 - ReficioSolution - <a asp-area="" asp-controller="Home" asp-action="Privacy">Personvern</a>
+            <main role="main" class="pb-3">
+                <!-- Vis hovedinnholdet definert av RenderBody() -->
+                @RenderBody()
+            </main>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+    
+        <!-- Fotnote med copyright og lenke til personvernerklæring -->
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2023 - ReficioSolution - <a asp-area="" asp-controller="Home" asp-action="Privacy">Personvern</a>
+            </div>
+        </footer>
+    
+        <!-- JavaScript-biblioteker og egendefinert skript -->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- Rendrer seksjonen "Scripts" hvis den er definert i underliggende visninger -->
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+    
+    </html>
+

@@ -1,5 +1,5 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Lisensiert til .NET Foundation under en eller flere avtaler.
+// .NET Foundation lisenserer denne filen til deg under MIT-lisensen.
 #nullable disable
 
 using System;
@@ -30,51 +30,51 @@ namespace ReficioSolution.Areas.Identity.Pages.Account.Manage
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Denne API-en støtter ASP.NET Core Identity sitt standard UI-infrastruktur og er ikke ment å bli brukt
+        ///     direkte fra koden din. Denne API-en kan endres eller fjernes i fremtidige utgivelser.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Denne API-en støtter ASP.NET Core Identity sitt standard UI-infrastruktur og er ikke ment å bli brukt
+        ///     direkte fra koden din. Denne API-en kan endres eller fjernes i fremtidige utgivelser.
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Denne API-en støtter ASP.NET Core Identity sitt standard UI-infrastruktur og er ikke ment å bli brukt
+        ///     direkte fra koden din. Denne API-en kan endres eller fjernes i fremtidige utgivelser.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Denne API-en støtter ASP.NET Core Identity sitt standard UI-infrastruktur og er ikke ment å bli brukt
+            ///     direkte fra koden din. Denne API-en kan endres eller fjernes i fremtidige utgivelser.
             /// </summary>
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Nåværende passord")]
             public string OldPassword { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Denne API-en støtter ASP.NET Core Identity sitt standard UI-infrastruktur og er ikke ment å bli brukt
+            ///     direkte fra koden din. Denne API-en kan endres eller fjernes i fremtidige utgivelser.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = " {0} må være minst {2} og maks {1} tegn langt.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Nytt passord")]
             public string NewPassword { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Denne API-en støtter ASP.NET Core Identity sitt standard UI-infrastruktur og er ikke ment å bli brukt
+            ///     direkte fra koden din. Denne API-en kan endres eller fjernes i fremtidige utgivelser.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Bekreft nytt passord")]
+            [Compare("NewPassword", ErrorMessage = "Det nye passordet og bekreftelsespassordet stemmer ikke overens.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -83,7 +83,7 @@ namespace ReficioSolution.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Kan ikke laste bruker med ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -105,7 +105,7 @@ namespace ReficioSolution.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Kan ikke laste bruker med ID '{_userManager.GetUserId(User)}'.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
@@ -119,8 +119,8 @@ namespace ReficioSolution.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Bruker endret passordet sitt vellykket.");
+            StatusMessage = "Passordet ditt er endret.";
 
             return RedirectToPage();
         }
