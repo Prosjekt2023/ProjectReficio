@@ -17,7 +17,9 @@ namespace ReficioSolution.Controllers
             _checkListRepository = checkListRepository;
         }
 
-        public IActionResult Index(int id, string status) // Added 'status' parameter
+        [HttpGet] // Added [HttpGet] to specify that this action handles GET requests
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(int id, string status) 
         {
             var serviceFormEntry = _serviceFormRepository.GetRelevantData(id);
             var checkListEntry = _checkListRepository.GetRelevantData(id); // Assuming you have a method to get CheckList data
