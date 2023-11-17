@@ -51,13 +51,7 @@
                             @serviceFormEntry.OrderNumber
                         </a>
                     </td>
-                    <td>
-                    <form asp-controller="ServiceOrderConnector" asp-action="Index" method="get">
-                                   <input type="hidden" name="id" value="@serviceFormEntry.ServiceFormId" />
-                                   <input type="text" name="status" placeholder="Enter Status" />
-                                   <button type="submit">Send Status</button>
-                               </form>
-                    </td>
+             
                 </tr>
             }
             </tbody>
